@@ -238,7 +238,8 @@
                     "Pipelines": document.getElementById("pipelines").value.trim() || '',
                     "Languages / Package Managers": document.getElementById("languages").value.trim() || '',
                     "Container Repos?": document.getElementById("containers").value.trim() || '',
-                    "Cloud deployments?": document.getElementById("cloud").value.trim() || '',
+                    "Cloud Deployments?": document.getElementById("cloud").value.trim() || '',  // Corrected reference
+                    "IAC?": document.getElementById("IAC").value.trim() || '',  // Added reference
                     "Issue Trackers?": document.getElementById("issue-trackers").value.trim() || ''
                 },
                 "Key contact(s) who you regularly meet with": Array.from(document.querySelectorAll("#contacts .contact")).map(contact => ({
