@@ -90,6 +90,8 @@
         <textarea id="internal_slack" name="internal_slack" rows="2"></textarea>
         <label for="external_slack">External Slack Channel:</label>
         <textarea id="external_slack" name="external_slack" rows="2"></textarea>
+        <label for="org_ids">Organization ID(s):</label>
+        <textarea id="org_ids" name="org_ids" rows="2"></textarea>
     </div>
 
     <div class="section">
@@ -248,7 +250,8 @@
                     "IAC?": document.getElementById("IAC").value.trim() || '',  // Added reference
                     "Issue Trackers?": document.getElementById("issue-trackers").value.trim() || '',
                     "Internal Slack Channel:": document.getElementById("internal_slack").value.trim() || '',
-                    "External Slack Channel:": document.getElementById("external_slack").value.trim() || ''
+                    "External Slack Channel:": document.getElementById("external_slack").value.trim() || '',
+                    "Organization ID(s):": document.getElementById("org_ids").value.trim() || ''
                 },
                 "Key contact(s) who you regularly meet with": Array.from(document.querySelectorAll("#contacts .contact")).map(contact => ({
                     "Name": contact.querySelector("textarea[name*='name']").value.trim() || '',
@@ -296,6 +299,7 @@
                         <li><strong>Issue Trackers?:</strong> ${data["Technical Stack"]["Issue Trackers?"]}</li>
                         <li><strong>Internal Slack Channel:</strong> ${data["Technical Stack"]["Internal Slack Channel:"]}</li>
                         <li><strong>External Slack Channel:</strong> ${data["Technical Stack"]["External Slack Channel:"]}</li>
+                        <li><strong>Organization ID(s):</strong> ${data["Technical Stack"]["Organization ID(s):"]}</li>
                     </ul>
 
                     <p><strong>Key contact(s) who you regularly meet with:</strong></p>
