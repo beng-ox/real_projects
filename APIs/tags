@@ -1,0 +1,220 @@
+{
+	"info": {
+		"_postman_id": "091a89bf-01b7-47b2-8b71-32bd9c4c856b",
+		"name": "Tags",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21037803"
+	},
+	"item": [
+		{
+			"name": "getAllTags",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "XXX",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query GetAllTags {\n  getAllTags {\n    tags {\n      tagId\n      name\n      displayName\n      tagType\n      createdBy\n    }\n  }\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "https://api.cloud.ox.security/api/apollo-gateway",
+					"protocol": "https",
+					"host": [
+						"api",
+						"cloud",
+						"ox",
+						"security"
+					],
+					"path": [
+						"api",
+						"apollo-gateway"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAppsTags",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "XXX",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query GetAppTags($getAppsTagsInput: GetAppsTagsInput!) {\n  getAppTags(getAppsTagsInput: $getAppsTagsInput) {\n    appsTags {\n      appId\n      tag {\n        tagId\n        name\n        displayName\n        tagType\n        createdBy\n      }\n    }\n  }\n}",
+						"variables": "{\n  \"getAppsTagsInput\": {\n    \"filters\": {\n      \"appId\": [\n        \"794094176\"\n      ],\n      \"tagType\": [\n        \"ox\",\n        \"simple\"\n      ]\n    }\n  }\n}"
+					}
+				},
+				"url": {
+					"raw": "https://api.cloud.ox.security/api/apollo-gateway",
+					"protocol": "https",
+					"host": [
+						"api",
+						"cloud",
+						"ox",
+						"security"
+					],
+					"path": [
+						"api",
+						"apollo-gateway"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "modifyAppsTags",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "XXX",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation ModifyAppsTags($input: ModifyAppsTagsInput!) {\n  modifyAppsTags(input: $input) {\n    acknowledge\n  }\n}",
+						"variables": "{\n  \"input\": {\n    \"addedTagsIds\": [    \n    ],\n    \"removedTagsIds\": [\"fc337bcf-7e88-41e6-9946-4a05491081cd\"],\n    \"appIds\": [\n        \"794094176\"\n    ]\n  }\n}"
+					}
+				},
+				"url": {
+					"raw": "https://api.cloud.ox.security/api/apollo-gateway",
+					"protocol": "https",
+					"host": [
+						"api",
+						"cloud",
+						"ox",
+						"security"
+					],
+					"path": [
+						"api",
+						"apollo-gateway"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "addTag",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "XXX",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation AddTag($input: AddTagInput!) {\n  addTags(input: $input) {\n    tags {\n      tagType\n      tagId\n      name\n      displayName\n      createdBy\n    }\n  }\n}",
+						"variables": "{\n  \"input\": {\n    \"tagsInput\": [\n      {\n        \"displayName\": \"Dvir2\",\n        \"name\": \"Dvir2\",\n        \"tagType\": \"simple\"\n      }\n    ]\n  }\n}"
+					}
+				},
+				"url": {
+					"raw": "https://api.cloud.ox.security/api/apollo-gateway",
+					"protocol": "https",
+					"host": [
+						"api",
+						"cloud",
+						"ox",
+						"security"
+					],
+					"path": [
+						"api",
+						"apollo-gateway"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "removeTags",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "XXX",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation AddTag($input: AddTagInput!) {\n  addTags(input: $input) {\n    tags {\n      tagType\n      tagId\n      name\n      displayName\n      createdBy\n    }\n  }\n}",
+						"variables": "{\n  \"input\": {\n    \"tagsInput\": [\n      {\n        \"displayName\": \"Dvir2\",\n        \"name\": \"Dvir2\",\n        \"tagType\": \"simple\"\n      }\n    ]\n  }\n}"
+					}
+				},
+				"url": {
+					"raw": "https://api.cloud.ox.security/api/apollo-gateway",
+					"protocol": "https",
+					"host": [
+						"api",
+						"cloud",
+						"ox",
+						"security"
+					],
+					"path": [
+						"api",
+						"apollo-gateway"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
