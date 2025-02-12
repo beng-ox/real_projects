@@ -1,0 +1,82 @@
+{
+			"name": "setApplicationsOwners",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "XXX",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation SetApplicationsOwnersByRole($input: SetApplicationsOwnersByRoleInput!) {\n  setAppOwners(input: $input) {\n    acknowledge\n  }\n}",
+						"variables": "{\n  \"input\": {\n    \"ownersByRoleInput\": [\n      {\n        \"role\": \"Dev\",\n        \"owners\": [\n          {\n            \"name\": \"DevOps5\",\n            \"email\": \"nir+devops5@ox.security\",\n            \"appIds\": [\n              \"e9f4ab12-940c-4eca-bed8-de1d3777762e\"\n            ]\n          },\n          {\n            \"name\": \"DevOps6\",\n            \"email\": \"nir+devops6@ox.security\",\n            \"appIds\": [\n              \"e9f4ab12-940c-4eca-bed8-de1d3777762e\"\n            ]\n          }\n        ]\n      }\n    ]\n  }\n}"
+					}
+				},
+				"url": {
+					"raw": "https://api.cloud.ox.security/api/apollo-gateway",
+					"protocol": "https",
+					"host": [
+						"api",
+						"cloud",
+						"ox",
+						"security"
+					],
+					"path": [
+						"api",
+						"apollo-gateway"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAppOwners",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "XXX",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query getAppOwners($input: GetTagsInput) {\n  getAllTags(input: $input) {\n    tags {\n      tagId\n      email\n      name\n      displayName\n      tagType\n      createdBy\n    }\n  }\n}",
+						"variables": "{\n  \"input\": {\n    \"filters\": {\n      \"tagType\": \"owner\"\n    }\n  }\n}"
+					}
+				},
+				"url": {
+					"raw": "https://api.cloud.ox.security/api/apollo-gateway",
+					"protocol": "https",
+					"host": [
+						"api",
+						"cloud",
+						"ox",
+						"security"
+					],
+					"path": [
+						"api",
+						"apollo-gateway"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
