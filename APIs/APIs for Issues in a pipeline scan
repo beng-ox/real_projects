@@ -1,0 +1,247 @@
+"info": {
+"_postman_id": "*******-2411-4749-b223-9940db0ca05f",
+"name": "Issues",
+"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+"_exporter_id": "123456789"
+},
+"item": [
+{
+"name": "GetIssues",
+"request": {
+"method": "POST",
+"header": [
+{
+"key": "Authorization",
+"value": "XXX"
+}
+],
+"body": {
+"mode": "graphql",
+"graphql": {
+"query": "query GetIssues($isDemo: Boolean, $getIssuesInput: IssuesInput) {\n  getIssues(isDemo: $isDemo, getIssuesInput: $getIssuesInput) {\n    totalIssues\n    totalFilteredIssues\n    offset\n    issues {\n      id\n      issueId\n      mainTitle\n      secondTitle\n      name\n      scanId\n      owners\n      occurrences\n      comment\n      severity\n      isFalsePositive\n      falsePositiveComment\n      policy {\n        id\n        name\n        detailedDescription\n      }\n      category {\n        name\n        categoryId\n      }\n      category {\n        name\n      }\n      app {\n        id\n        name\n        businessPriority\n        type\n        fakeApp\n      }\n      createdAt\n    }\n  }\n}",
+"variables": "{\n  \"getIssuesInput\": {\n    \"offset\": 0,\n    \"limit\": 50,\n    \"sort\": {\n      \"fields\": [\n        \"Severity\"\n      ],\n      \"order\": [\n        \"DESC\"\n      ]\n    },\n    \"dateRange\": {\n      \"from\": 1724619599999,\n      \"to\": 1725224399999\n    },\n    \"topLevelSearch\": \"\",\n    \"conditionalFilters\": [\n      {\n        \"condition\": \"OR\",\n        \"fieldName\": \"apps\",\n        \"values\": [\n          \"OX-Security-Demo/Bank-Website\"\n        ]\n      },\n      {\n        \"condition\": \"OR\",\n        \"fieldName\": \"criticality\",\n        \"values\": [\n            \"Appoxalypse\",\n            \"Critical\",\n            \"High\",\n            \"Medium\",\n            \"Low\",\n            \"Info\"\n        ]\n       },\n       {\n        \"condition\": \"OR\",\n        \"fieldName\": \"categories\",\n        \"values\": [\n            \"12\",\n            \"6\",\n            \"8\",\n            \"15\",\n            \"5\",\n            \"4\",\n            \"3\",\n            \"7\",\n            \"25\",\n            \"14\"\n        ]\n       }\n    ]\n  }\n}"
+}
+},
+"url": {
+"raw": "https://api.cloud.ox.security/api/apollo-gateway",
+"protocol": "https",
+"host": [
+"api",
+"cloud",
+"ox",
+"security"
+],
+"path": [
+"api",
+"apollo-gateway"
+]
+}
+},
+"response": []
+},
+{
+"name": "GetIssue",
+"request": {
+"method": "POST",
+"header": [
+{
+"key": "Authorization",
+"value": "XXX"
+}
+],
+"body": {
+"mode": "graphql",
+"graphql": {
+"query": "query GetSingleIssueInfo($getSingleIssueInput: SingleIssueInput) {\n  getSingleIssueInfo(getSingleIssueInput: $getSingleIssueInput) {\n    id\n    issueId\n    name\n    created\n    createdAt\n    scanDate\n    mainTitle\n    secondTitle\n    severity\n    owners\n    ruleId\n    originalToolSeverity\n    occurrences\n    comment\n    learnMore\n    exclusionId\n    isMonoRepoChild\n    monoRepoParent\n    isFixAvailable\n    scaFixType\n    app {\n      id\n      name\n      businessPriority\n      type\n      originBranchName\n      repoId\n      organization\n      repoName\n      owners {\n        name\n      }\n    }\n    aggregations {\n      type\n      items {\n        startLine\n        hashAggId\n        title\n        link\n        fileName\n        fileUri\n        date\n        commitLink\n        match\n        commitBy\n        snippet\n        source\n        ruleId\n        realMatch\n        filePath\n        lockfile\n        snippetLineNumber\n        language\n      }\n    }\n    policy {\n      id\n      name\n      detailedDescription\n    }\n    category {\n      name\n      categoryId\n    }\n    isPRAvailable\n    fixes {\n      settingType\n      tooltip\n      description\n      warning\n      confirmation\n      inputs {\n        type\n        name\n        displayName\n        maxSelect\n        minSelect\n        options {\n          isDisabled\n          name\n          displayName\n          selected\n          metadata\n          info\n        }\n        multiSelect\n      }\n    }\n    exclusions {\n      label\n      type\n      id\n      isDefault\n      exclusionScope\n      oxRuleId\n      level\n    }\n    recommendation\n    violationInfoTitle\n    sourceTools\n    cwe\n    fixLink\n    fixIssue {\n      fixType\n      activeFix {\n        fixId\n        fixURL\n      }\n      fixPR {\n        issueBranch\n        commitMessage\n        fixFiles {\n          filePath\n          newFileContent\n        }\n      }\n    }\n    dependencyChain\n    publicExploitLink\n    cweList {\n      name\n      description\n      url\n    }\n    compliance {\n      standard\n      control\n      controlLink\n      category\n      description\n    }\n    lowerSeverityReason\n    scaTriggerPkg\n    indirectSupported\n    isFalsePositive\n    tickets {\n      key\n      provider\n      ticketId\n      link\n    }\n  }\n}",
+"variables": "{\n  \"getSingleIssueInput\": {\n    \"issueId\": \"584352228-oxPolicy_securityScan_120-org.springframework.boot:spring-boot-starter-web_2.1.2.RELEASE\"\n  }\n}"
+}
+},
+"url": {
+"raw": "https://api.cloud.ox.security/api/apollo-gateway",
+"protocol": "https",
+"host": [
+"api",
+"cloud",
+"ox",
+"security"
+],
+"path": [
+"api",
+"apollo-gateway"
+]
+}
+},
+"response": []
+},
+{
+"name": "GetScaVulnerabilities",
+"request": {
+"method": "POST",
+"header": [
+{
+"key": "Authorization",
+"value": "XXX"
+}
+],
+"body": {
+"mode": "graphql",
+"graphql": {
+"query": "query GetScaVulnerabilities($getScaVulnerabilitiesInput: ScaVulnerabilitiesInput) {\n  getScaVulnerabilities(getScaVulnerabilitiesInput: $getScaVulnerabilitiesInput) {\n    vulnerabilities {\n      cwe {\n        name\n        shortName\n        url\n      }\n      cveSeverityFactor {\n        sfName\n        sfDescription\n        sfChangedNumber\n      }\n      oxSeverity\n      cve\n      cveLink\n      cvsVer\n      libName\n      dependencyChain\n      libVersion\n      chainDepth\n      exploitInTheWild\n      exploitInTheWildLink\n      description\n      dateDiscovered\n      minorVerWithFix\n      majorVerWithFix\n      exploitRequirement\n      exploitCode\n      originalSeverity\n    }\n    total\n    offset\n    severityFactorBreakdown {\n      sfName\n      count\n    }\n  }\n}",
+"variables": "{\n  \"getScaVulnerabilitiesInput\": {\n    \"issueId\": \"e9f4ab12-940c-4eca-bed8-de1d3777762e-oxPolicy_securityScan_120-requests_2.1.0\",\n    \"offset\": 0,\n    \"tab\": \"Indirect\",\n    \"search\": \"\",\n    \"cveSeverityFactors\": []\n  }\n}"
+}
+},
+"url": {
+"raw": "https://api.cloud.ox.security/api/apollo-gateway",
+"protocol": "https",
+"host": [
+"api",
+"cloud",
+"ox",
+"security"
+],
+"path": [
+"api",
+"apollo-gateway"
+]
+}
+},
+"response": []
+},
+{
+"name": "GetPipelineSummary",
+"request": {
+"method": "POST",
+"header": [
+{
+"key": "Authorization",
+"value": "XXX"
+}
+],
+"body": {
+"mode": "graphql",
+"graphql": {
+"query": "query GetPipelineSummary($getPipelineSummaryInput: GetPipelineSummaryInput) {\n  getPipelineSummary(getPipelineSummaryInput: $getPipelineSummaryInput) {\n    offset\n    total\n    totalFiltered\n    pipelineSummaries {\n      apps {\n        appId\n        appName\n        appType\n      }\n      eventType\n      sourceBranch\n      targetBranch\n      result\n      jobId\n      jobTriggeredBy\n      jobTriggeredAt\n      jobCompletedAt\n      jobDuration\n      jobTriggeredReason\n      jobUrl\n      totalIssues\n      totalBlockingIssues\n      pullRequestId\n      pullRequestUrl\n      issues {\n        appox\n        critical\n        high\n        medium\n        low\n      }\n    }\n  }\n}",
+"variables": "{\n  \"getPipelineSummaryInput\": {\n    \"limit\": 100,\n    \"offset\": 0,\n    \"filters\": {},\n    \"owners\": [],\n    \"tagIds\": [],\n    \"dateRange\": {\n      \"from\": 1727384399999,\n      \"to\": 1735250399999\n    }\n  }\n}"
+}
+},
+"url": {
+"raw": "https://api.cloud.ox.security/api/apollo-gateway",
+"protocol": "https",
+"host": [
+"api",
+"cloud",
+"ox",
+"security"
+],
+"path": [
+"api",
+"apollo-gateway"
+]
+}
+},
+"response": []
+},
+{
+"name": "GetCICDIssues",
+"request": {
+"method": "POST",
+"header": [
+{
+"key": "Authorization",
+"value": "XXX"
+}
+],
+"body": {
+"mode": "graphql",
+"graphql": {
+"query": "query GetCICDIssues($getCicdIssuesInput: CICDIssuesInput) {\n  getCICDIssues(getCICDIssuesInput: $getCicdIssuesInput) {\n    totalIssues\n    totalFilteredIssues\n    offset\n    issues {\n      id\n      groupId\n      name\n      mainTitle\n      severity\n      app {\n        id\n        name\n        type\n      }\n      policy {\n        id\n        name\n        detailedDescription\n      }\n      issueId\n      category {\n        name\n        categoryId\n      }\n      aggregations {\n        type\n        items {\n          link\n          fileName\n          fileUri\n          startLine\n          endLine\n          match\n          source\n          ruleId\n          realMatch\n          excludedByAlert\n          filePath\n          snippetLineNumber\n          language\n          isFixAvailable\n          aggId\n          branch\n          hashAggId\n        }\n      }\n      recommendation\n      sourceTools\n      createdAt\n      cicdFields {\n        issueStatus\n        sourceBranch\n        targetBranch\n        jobId\n        jobUrl\n        pullRequestId\n        pullRequestUrl\n        jobTriggeredAt\n        jobTriggeredBy\n        jobTriggeredReason\n        enforcement\n      }\n    }\n  }\n}",
+"variables": "{\n  \"getCicdIssuesInput\": {\n    \"owners\": [],\n    \"tagIds\": [],\n    \"limit\": 100,\n    \"dateRange\": {\n      \"from\": 1727384399999,\n      \"to\": 1735250399999\n    },\n    \"search\": [],\n    \"openItems\": [\n      \"jobNumber\"\n    ],\n    \"conditionalFilters\": [\n      {\n        \"condition\": \"OR\",\n        \"fieldName\": \"jobNumber\",\n        \"values\": [\n          \"11654933876\"\n        ]\n      }\n    ]\n  }\n}"
+}
+},
+"url": {
+"raw": "https://api.cloud.ox.security/api/apollo-gateway",
+"protocol": "https",
+"host": [
+"api",
+"cloud",
+"ox",
+"security"
+],
+"path": [
+"api",
+"apollo-gateway"
+]
+}
+},
+"response": []
+},
+{
+"name": "GetCICDIssue",
+"request": {
+"method": "POST",
+"header": [
+{
+"key": "Authorization",
+"value": "XXX"
+}
+],
+"body": {
+"mode": "graphql",
+"graphql": {
+"query": "query GetCICDIssue($getSingleIssueInput: SingleIssueInput) {\n  getCICDIssue(getSingleIssueInput: $getSingleIssueInput) {\n    id\n    groupId\n    name\n    mainTitle\n    secondTitle\n    created\n    scanDate\n    severity\n    occurrences\n    connector\n    scaVulnerabilities {\n      cwe {\n        name\n        shortName\n        url\n      }\n      cveSeverityFactor {\n        sfName\n        sfDescription\n        sfChangedNumber\n      }\n      oxSeverity\n      dependencyChain\n      libName\n      libVersion\n      chainDepth\n      cve\n      cveLink\n      cvsVer\n      exploitInTheWildLink\n      description\n      dateDiscovered\n      minorVerWithFix\n      majorVerWithFix\n      exploitRequirement\n      exploitCode\n      originalSeverity\n    }\n    extraInfo {\n      key\n      val\n      value\n    }\n    resource {\n      id\n      type\n    }\n    app {\n      id\n      name\n      businessPriority\n      type\n      applicationFlows {\n        artifacts {\n          type\n          system\n          subType\n          hash\n          size\n          date\n          name\n          linkName\n          location {\n            runBy\n            foundBy\n            foundIn\n            link\n          }\n        }\n        cloudDeployments {\n          type\n          subType\n          name\n          hash\n          hashType\n          link\n          location {\n            runBy\n            foundBy\n            foundIn\n            link\n          }\n          k8sType\n          imageName\n          date\n          cluster\n          region\n        }\n        cicdInfo {\n          type\n          system\n          latestDate\n          location {\n            runBy\n            foundBy\n            foundIn\n            link\n          }\n        }\n        orchestrators {\n          type\n          name\n          hashType\n          system\n          hash\n          size\n          date\n        }\n        kubernetes {\n          type\n          name\n          hashType\n          system\n          hash\n          subType\n          size\n          date\n        }\n        repository {\n          type\n          system\n          date\n        }\n      }\n      fakeApp\n    }\n    policy {\n      id\n      name\n      detailedDescription\n    }\n    issueId\n    category {\n      name\n      categoryId\n    }\n    aggregations {\n      items {        \n        link\n        fileUri\n        startLine\n        endLine\n        match\n        source\n        ruleId\n        realMatch\n        excludedByAlert\n        filePath\n        language\n        isFixAvailable\n        aggId\n        branch\n        hashAggId        \n      }\n    }\n    recommendation\n    violationInfoTitle\n    sourceTools\n    ruleId\n    exclusionCategory\n    cwe\n    fixLink\n    cweList {\n      name\n      description\n      url\n    }\n    dependencyChain\n    publicExploitLink\n    createdAt\n    severityChange\n    originalToolSeverity\n    cicdFields {\n      issueStatus\n      sourceBranch\n      targetBranch\n      jobId\n      jobUrl\n      pullRequestId\n      pullRequestUrl\n      jobTriggeredAt\n      jobTriggeredBy\n      jobTriggeredReason\n      enforcement\n    }\n  }\n}",
+"variables": "{\n  \"getSingleIssueInput\": {\n    \"issueId\": \"e43ac73e-8e3c-4229-bc13-ee005c0c0e7d-584352228-oxPolicy_securityScan_secrets_1-76161e3b0dbef6c6cd8f715ac2ac9c4f\"\n  }\n}"
+}
+},
+"url": {
+"raw": "https://api.cloud.ox.security/api/apollo-gateway",
+"protocol": "https",
+"host": [
+"api",
+"cloud",
+"ox",
+"security"
+],
+"path": [
+"api",
+"apollo-gateway"
+]
+}
+},
+"response": []
+},
+{
+"name": "IssueFilters",
+"request": {
+"method": "POST",
+"header": [
+{
+"key": "Authorization",
+"value": "XXX"
+}
+],
+"body": {
+"mode": "graphql",
+"graphql": {
+"query": "query GetIssuesConditionalFiltersLazy($getIssuesInput: IssuesInput) {\n  getIssuesConditionalFiltersLazy(getIssuesInput: $getIssuesInput) {\n    filters {\n      type\n      items {\n        id\n        filterId\n        label\n        count\n        percent\n        changeNumber\n      }\n    }\n  }\n}",
+"variables": "{\n  \"getIssuesInput\": {\n    \"owners\": [],\n    \"tagIds\": [],\n    \"offset\": 50,\n    \"limit\": 100,\n    \"dateRange\": {\n      \"from\": 1724619599999,\n      \"to\": 1725224399999\n    },\n    \"search\": [],\n    \"openItems\": [\n      \"apps\",\n      \"criticality\"\n    ],\n    \"topLevelSearch\": \"\",\n    \"conditionalFilters\": [\n      {\n        \"condition\": \"OR\",\n        \"fieldName\": \"apps\",\n        \"values\": [\n          \"OX-Security-Demo/Bank-Website\"\n        ]\n      }\n    ]\n  }\n}"
+}
+},
+"url": {
+"raw": "https://api.cloud.ox.security/api/apollo-gateway",
+"protocol": "https",
+"host": [
+"api",
+"cloud",
+"ox",
+"security"
+],
+"path": [
+"api",
+"apollo-gateway"
+]
+}
+},
+"response": []
+}
+]
+}
