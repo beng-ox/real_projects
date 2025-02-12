@@ -1,0 +1,122 @@
+//This is not an official API as one of the services is not yet exposed as an official API
+First API  “GetApplications”, will return list of all excluded apps with the appId
+Second API “RemoveAppExclusion” which will make the app relevant, note that the second API will need to receive the appId from the first API
+Since this is not an official API you will need to use your personal token that is passed as part of the requests
+and add it in the token section (see print screen)
+and you will need to add the “access_token” you grab from the “https://auth.app.ox.security/oauth/token”  you have in the UI
+{
+	"info": {
+		"_postman_id": "021064c1-30f3-4bcf-aeee-b0902427d7f5",
+		"name": "Make App Relevant",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21037803"
+	},
+	"item": [
+		{
+			"name": "GetApplications",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "<your bearer token>",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "ox_<token>",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query GetApplications($getApplicationsInput: GetApplicationsInput) {\n  getApplications(getApplicationsInput: $getApplicationsInput) {\n    applications {\n      appId\n      appName\n      lastCodeChange\n      irrelevantReasons\n      overrideRelevance\n      type\n      fakeApp\n    }\n  }\n}",
+						"variables": "{\n  \"getApplicationsInput\": {\n    \"applicationFilters\": [\n      \"Irrelevant\"\n    ],\n    \"irrelevancyFilters\": [],\n    \"orderBy\": {\n      \"direction\": \"DESC\",\n      \"field\": \"Info\"\n    }\n  }\n}"
+					}
+				},
+				"url": {
+					"raw": "https://api.cloud.ox.security/api/report-service",
+					"protocol": "https",
+					"host": [
+						"api",
+						"cloud",
+						"ox",
+						"security"
+					],
+					"path": [
+						"api",
+						"report-service"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RemoveAppExclusion",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "<your bearer token>",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "ox_<token>",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation RemoveAppExclusion($relevance: Relevance!, $exclusionId: String!) {\n  removeAppExclusion(relevance: $relevance, exclusionId: $exclusionId) {\n    isSucceded\n  }\n}",
+						"variables": "{\n    \"exclusionId\": \"36976330\",\n    \"relevance\": \"Relevant\"\n}"
+					}
+				},
+				"url": {
+					"raw": "https://api.cloud.ox.security/api/exclusion-service",
+					"protocol": "https",
+					"host": [
+						"api",
+						"cloud",
+						"ox",
+						"security"
+					],
+					"path": [
+						"api",
+						"exclusion-service"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
